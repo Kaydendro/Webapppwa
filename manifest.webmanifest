@@ -1,0 +1,20 @@
+{
+  "id": "lookalike",
+  "name": "Lookalike",
+  "short_name": "Lookalike",
+  "description": "Photograph a page of problems and get a fresh practice quiz on the same skills. No answers to your own homework.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F7F2",
+  "theme_color": "#14213D",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

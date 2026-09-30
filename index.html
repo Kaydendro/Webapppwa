@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14213D">
+  <meta name="description" content="Photograph a page of problems and get a fresh practice quiz on the same skills.">
+  <title>Lookalike</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="icons/icon-192.png" alt="" width="30" height="30">
+      <span>Lookalike</span>
+    </div>
+    <button id="btn-settings" class="icon-btn" type="button" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- 1. Scan -->
+    <section id="screen-scan" class="screen">
+      <h1 id="h-scan" tabindex="-1">Scan a page of problems</h1>
+      <p class="lead">Take a photo of your homework or notes. You get a fresh practice quiz on the same skills, and your own problems never get answered.</p>
+
+      <div id="key-banner" class="notice" hidden>
+        <p>Add your Gemini API key to get started.</p>
+        <button id="btn-key" class="btn small" type="button">Add key</button>
+      </div>
+
+      <div class="capture">
+        <button id="btn-camera" class="btn primary big" type="button">Take a photo</button>
+        <button id="btn-gallery" class="btn ghost" type="button">Choose from gallery</button>
+        <input id="in-camera" type="file" accept="image/*" capture="environment" hidden>
+        <input id="in-gallery" type="file" accept="image/*" multiple hidden>
+      </div>
+
+      <ul id="thumbs" class="thumbs" aria-label="Pages to scan"></ul>
+      <p id="thumb-hint" class="muted" hidden>Up to 4 pages. Add another if your problems continue.</p>
+
+      <div class="actions">
+        <button id="btn-continue" class="btn primary" type="button" disabled>Continue</button>
+      </div>
+    </section>
+
+    <!-- 2. Quiz setup -->
+    <section id="screen-setup" class="screen" hidden>
+      <button id="btn-back-scan" class="link" type="button">&lsaquo; Back</button>
+      <h1 id="h-setup" tabindex="-1">Set up your quiz</h1>
+      <p id="setup-pages" class="muted"></p>
+      <div id="setup-error" class="notice error" role="alert" hidden></div>
+
+      <fieldset class="group">
+        <legend>How many questions?</legend>
+        <div class="seg">
+          <label class="seg-item"><input type="radio" name="count" value="5"><span>5</span></label>
+          <label class="seg-item"><input type="radio" name="count" value="10"><span>10</span></label>
+          <label class="seg-item"><input type="radio" name="count" value="15"><span>15</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>How hard?</legend>
+        <div class="rows">
+          <label class="row-item">
+            <input type="radio" name="difficulty" value="easy">
+            <span class="row-title">Easy</span>
+            <span class="row-desc">One step at a time, familiar wording.</span>
+          </label>
+          <label class="row-item">
+            <input type="radio" name="difficulty" value="medium">
+            <span class="row-title">Medium</span>
+            <span class="row-desc">The same level as your page.</span>
+          </label>
+          <label class="row-item">
+            <input type="radio" name="difficulty" value="hard">
+            <span class="row-title">Hard</span>
+            <span class="row-desc">Multi-step, trickier wording.</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button id="btn-make" class="btn primary" type="button">Make my quiz</button>
+      </div>
+    </section>
+
+    <!-- 3. Loading -->
+    <section id="screen-loading" class="screen center" hidden>
+      <h1 id="h-loading" tabindex="-1">Making your quiz</h1>
+      <div class="sweep" aria-hidden="true"></div>
+      <p id="loading-msg" class="muted" aria-live="polite">Reading your page...</p>
+      <button id="btn-cancel" class="btn ghost" type="button">Cancel</button>
+    </section>
+
+    <!-- 4. Quiz -->
+    <section id="screen-quiz" class="screen" hidden>
+      <div class="progress">
+        <p id="q-progress" class="progress-text"></p>
+        <div class="bar" aria-hidden="true"><div id="q-bar"></div></div>
+      </div>
+      <div id="q-passage" class="passage" hidden></div>
+      <h2 id="q-text" class="q" tabindex="-1"></h2>
+      <div id="q-options" class="options" role="group" aria-label="Answer choices"></div>
+      <div id="q-hint" class="hint" hidden></div>
+      <div id="q-feedback" class="feedback" role="status" hidden></div>
+      <div class="actions two">
+        <button id="btn-hint" class="btn ghost" type="button">Hint</button>
+        <button id="btn-check" class="btn primary" type="button" disabled>Check answer</button>
+      </div>
+    </section>
+
+    <!-- 5. Results -->
+    <section id="screen-results" class="screen" hidden>
+      <h1 id="h-results" tabindex="-1">Quiz finished</h1>
+      <p id="r-score" class="score"></p>
+      <p id="r-msg" class="lead"></p>
+      <div id="r-review" class="review"></div>
+      <div class="actions stack">
+        <button id="btn-again" class="btn primary" type="button">New questions, same page</button>
+        <button id="btn-change" class="btn ghost" type="button">Change settings</button>
+        <button id="btn-new" class="btn ghost" type="button">Scan something new</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings -->
+  <dialog id="settings" aria-labelledby="settings-title">
+    <form method="dialog" id="settings-form">
+      <h2 id="settings-title">Settings</h2>
+
+      <label class="field" for="set-key">Gemini API key</label>
+      <input id="set-key" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your key">
+      <p class="muted small-text">Stored only on this phone and sent only to Google. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+      <label class="check"><input id="set-show" type="checkbox"> Show key</label>
+
+      <label class="field" for="set-model">Model</label>
+      <input id="set-model" type="text" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <p class="muted small-text">Change this if Google retires the default model.</p>
+
+      <div class="dialog-actions">
+        <button id="set-cancel" class="btn ghost" type="button">Cancel</button>
+        <button id="set-save" class="btn primary" type="submit" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
